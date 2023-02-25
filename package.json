@@ -1,5 +1,5 @@
 {
-  "name": "my-package",
+  "name": "threlte-spline",
   "license": "MIT",
   "version": "0.0.1",
   "main": "dist/index.js",
@@ -17,7 +17,9 @@
   ],
   "scripts": {
     "build": "tsup index.ts --format cjs,esm --dts",
-    "lint": "tsc"
+    "lint": "tsc",
+    "ci": "pnpm lint && pnpm build",
+    "release": "pnpm ci && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
