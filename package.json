@@ -19,11 +19,21 @@
     "build": "tsup index.ts --format cjs,esm --dts",
     "lint": "tsc",
     "ci": "pnpm lint && pnpm build",
-    "release": "pnpm ci && changeset publish"
+    "release": "pnpm ci && changeset publish",
+    "changeset": "changeset"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
+    "@splinetool/loader": "^0.9.235",
+    "@threlte/core": "^5.0.9",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@types/three": "^0.149.0"
+  },
+  "peerDependencies": {
+    "@splinetool/loader": "^0.9.235",
+    "@threlte/core": "^5.0.9"
   }
 }
