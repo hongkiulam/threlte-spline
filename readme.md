@@ -2,9 +2,14 @@
 
 # threlte-spline
 
+
 **threlte-spline** is a simple utility that lets you use your [Spline](https://spline.design/) scene with [threlte](https://threlte.xyz/), via the Spline react-three-fiber code export.
 
 This library is heavily inspired by [r3f-spline](https://github.com/splinetool/r3f-spline)
+
+![](https://github.com/hongkiulam/threlte-spline/actions/workflows/main.yml/badge.svg)
+![](https://github.com/hongkiulam/threlte-spline/actions/workflows/publish.yml/badge.svg)
+![](https://img.shields.io/npm/v/threlte-spline?style=plastic)
 
 ## Install
 
