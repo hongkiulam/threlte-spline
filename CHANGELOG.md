@@ -1,5 +1,11 @@
 # threlte-spline
 
+## 0.2.3
+
+### Patch Changes
+
+- 1a6b5c5: Update readme example
+
 ## 0.2.2
 
 ### Patch Changes
