@@ -28,7 +28,7 @@ pnpm add threlte-spline @splinetool/loader @threlte/core
 
 ## Usage
 
-```jsx
+```svelte
 <script lang="ts">
   import { Canvas, T, OrbitControls } from '@threlte/core';
   import { loadSpline } from 'threlte-spline';
@@ -69,7 +69,7 @@ Type information should be fairly complete as this package extends `@types/three
 
 In the interim, you can extend the types by doing the following
 
-```tsx
+```svelte
 <script lang="ts">
   import { Canvas, T, OrbitControls } from '@threlte/core';
   import { loadSpline } from 'threlte-spline';
