@@ -1,5 +1,11 @@
 # threlte-spline
 
+## 0.2.1
+
+### Patch Changes
+
+- c81562d: More lenient peer dep versions
+
 ## 0.2.0
 
 ### Minor Changes
