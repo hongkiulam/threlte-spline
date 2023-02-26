@@ -6,7 +6,7 @@ import type {
   Euler,
   DirectionalLightShadow,
   BufferGeometry,
-} from "three";
+} from 'three';
 
 type Object3DOverrides = {
   position: [x: number, y: number, z: number];
@@ -81,8 +81,8 @@ function buildGraph(object: Object3D): ObjectMap {
   return data;
 }
 
-import { useLoader } from "@threlte/core";
-import splineLoader from "@splinetool/loader";
+import { useLoader } from '@threlte/core';
+import splineLoader from '@splinetool/loader';
 
 export function loadSpline<GraphNodeAdditionalProps extends object = {}>(
   splineUrl: `${string}spline.design/${string}`,

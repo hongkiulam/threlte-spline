@@ -26,11 +26,13 @@
     "@changesets/cli": "^2.26.0",
     "@splinetool/loader": "^0.9.235",
     "@threlte/core": "^5.0.9",
+    "prettier": "^2.8.4",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@types/three": "^0.149.0"
+    "@types/three": "^0.149.0",
+    "three": "^0.150.0"
   },
   "peerDependencies": {
     "@splinetool/loader": "^0.9.235",
