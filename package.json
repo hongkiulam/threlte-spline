@@ -2,7 +2,7 @@
   "name": "threlte-spline",
   "description": "Helper function to load Spline scenes into threlte",
   "license": "MIT",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "repository": {
     "url": "https://github.com/hongkiulam/threlte-spline"
   },
