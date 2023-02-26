@@ -1,5 +1,11 @@
 # threlte-spline
 
+## 0.2.2
+
+### Patch Changes
+
+- f239ac7: Update package json fields and readme
+
 ## 0.2.1
 
 ### Patch Changes
