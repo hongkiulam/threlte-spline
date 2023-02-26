@@ -99,6 +99,6 @@ This will add the missing props to `GraphNode`
 
 ## Examples
 
-A very rough port of this [r3f-spline example](https://codesandbox.io/s/2giomw?file=/src/Scene.js) can be found [here](https://stackblitz.com/edit/vitejs-vite-uyxmpf?file=src/App.svelte)
-
-> The materials in the example haven't been ported over 100%, but should be enough to prove the library works as intended
+<p align="left">
+  <a href="https://stackblitz.com/edit/threlte-spline-demo?file=src%2FApp.svelte" target="_blank"><img width="274" src="https://raw.githubusercontent.com/hongkiulam/threlte-spline/main/.github/screenshots/example1.png" /></a>
+</p>
