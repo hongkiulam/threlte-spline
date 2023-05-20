@@ -3,7 +3,7 @@
 # threlte-spline
 
 
-**threlte-spline** is a simple utility that lets you use your [Spline](https://spline.design/) scene with [threlte](https://threlte.xyz/), via the Spline react-three-fiber code export.
+**threlte-spline** is a simple utility that lets you use your [Spline](https://spline.design/) scene with [Threlte](https://threlte.xyz/), via the Spline react-three-fiber code export.
 
 This library is heavily inspired by [r3f-spline](https://github.com/splinetool/r3f-spline)
 
@@ -11,22 +11,24 @@ This library is heavily inspired by [r3f-spline](https://github.com/splinetool/r
 ![](https://github.com/hongkiulam/threlte-spline/actions/workflows/publish.yml/badge.svg)
 ![](https://img.shields.io/npm/v/threlte-spline?style=plastic)
 
+While this library is written to be used in Threlte, it __can__ be used in applications that aren't powered by Threlte. That's because this library simply loads, and returns the Spline scene as Three.js objects.
+
 ## Install
 
 ```bash
-yarn add threlte-spline @splinetool/loader @threlte/core
+yarn add threlte-spline @splinetool/loader
 ```
 
 or
 
 ```bash
-npm install threlte-spline @splinetool/loader @threlte/core
+npm install threlte-spline @splinetool/loader
 ```
 
 or
 
 ```bash
-pnpm add threlte-spline @splinetool/loader @threlte/core
+pnpm add threlte-spline @splinetool/loader
 ```
 
 `@types/three` is required for Typescript support
@@ -66,8 +68,6 @@ pnpm add threlte-spline @splinetool/loader @threlte/core
 {/if}
 ```
 
-For those more familiar with React hooks naming conventions, this package also exports `useSpline` which is identical to `loadSpline`
-
 ## Typescript
 
 Type information should be fairly complete as this package extends `@types/three`, however there may be certain properties which are missing. Feel free to contribute any missing types if you find any.
@@ -79,11 +79,11 @@ In the interim, you can extend the types by doing the following
   import { Canvas, T, OrbitControls } from '@threlte/core';
   import { loadSpline } from 'threlte-spline';
 
-  type MissingProps = {
+  type MissingProperties = {
     prop1: number;
   }
-  let graph: ObjectMap<MissingProps>;
-  loadSpline<MissingProps>('https://prod.spline.design/HwAUoybfBaBCLzwO/scene.spline').then((_graph) => {
+  let graph: ObjectMap<MissingProperties>;
+  loadSpline<MissingProperties>('https://prod.spline.design/HwAUoybfBaBCLzwO/scene.spline').then((_graph) => {
     graph = _graph;
   });
 </script>

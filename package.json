@@ -17,21 +17,19 @@
     "threlte",
     "splinetool"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/index.mjs"
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup index.ts --format cjs,esm --dts",
+    "build": "tsup index.ts --format esm --dts",
     "lint": "tsc",
     "ci": "pnpm lint && pnpm build",
     "release": "pnpm ci && changeset publish",
@@ -40,7 +38,6 @@
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
     "@splinetool/loader": "^0.9.235",
-    "@threlte/core": "^5.0.9",
     "@types/three": "^0.149.0",
     "prettier": "^2.8.4",
     "three": "^0.150.0",
@@ -49,7 +46,6 @@
   },
   "peerDependencies": {
     "@splinetool/loader": ">=0.9 <1",
-    "@threlte/core": "^5",
     "@types/three": ">=0.1"
   },
   "peerDependenciesMeta": {

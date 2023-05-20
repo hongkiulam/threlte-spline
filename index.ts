@@ -50,8 +50,8 @@ const convertEulerToArr = (e: Euler): [x: number, y: number, z: number] => [
 
 // Inspired by react-three-fiber's buildGraph
 // https://github.com/pmndrs/react-three-fiber/blob/cc625d2338b7d0e6b6ec9fc7564f7c706534c5cf/packages/fiber/src/core/utils.ts#L141
-function buildGraph(object: Object3D): ObjectMap {
-  const data: ObjectMap = { nodes: {}, materials: {} };
+function buildGraph<AdditionalProps extends object = {}>(object: Object3D) {
+  const data: ObjectMap<AdditionalProps> = { nodes: {}, materials: {} };
   if (object) {
     object.traverse((obj: any) => {
       // properties that need additional fixing
@@ -81,30 +81,20 @@ function buildGraph(object: Object3D): ObjectMap {
   return data;
 }
 
-import { useLoader } from '@threlte/core';
-import splineLoader from '@splinetool/loader';
-
-export function loadSpline<GraphNodeAdditionalProps extends object = {}>(
+export async function loadSpline<GraphNodeAdditionalProps extends object = {}>(
   splineUrl: `${string}spline.design/${string}`,
   onProgress?: ((event: ProgressEvent<EventTarget>) => void) | undefined
-) {
-  const loader = useLoader(splineLoader, () => new splineLoader());
-  return new Promise<ObjectMap<GraphNodeAdditionalProps>>((resolve, reject) => {
+): Promise<ObjectMap<GraphNodeAdditionalProps>> {
+  const SplineLoader = (await import('@splinetool/loader')).default;
+  const loader = new SplineLoader();
+  return new Promise((res, rej) => {
     loader.load(
       splineUrl,
-      (spline) => {
-        const graph = buildGraph(spline);
-        resolve(graph as ObjectMap<GraphNodeAdditionalProps>);
+      (scene) => {
+        res(buildGraph(scene));
       },
       onProgress,
-      function onError(err) {
-        reject(err);
-      }
+      rej
     );
   });
 }
-
-/**
- * Identical to `loadSpline`
- */
-export const useSpline = loadSpline;
