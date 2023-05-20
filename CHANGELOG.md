@@ -1,5 +1,13 @@
 # threlte-spline
 
+## 0.3.0
+
+### Minor Changes
+
+- 0808fbf: Remove useSpline export
+- 0808fbf: Remove @threlte/core dependency
+- 0808fbf: Remove cjs
+
 ## 0.2.3
 
 ### Patch Changes
