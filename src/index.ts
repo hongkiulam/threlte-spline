@@ -23,18 +23,18 @@ type Object3DOverrides = {
   // standard mesh
   geometry: BufferGeometry;
   material: Material;
-  children: GraphNode[];
+  children: SceneNode[];
 };
 
-export type GraphNode<AdditionalProps extends object = {}> = Object3D &
+export type SceneNode<AdditionalProps extends object = {}> = Object3D &
   Object3DOverrides &
   AdditionalProps;
 
-export type ObjectMap<GraphNodeAdditionalProps extends object = {}> = {
+export type ObjectMap<SceneNodeAdditionalProps extends object = {}> = {
   nodes: {
-    [name: string]: GraphNode<GraphNodeAdditionalProps>;
+    [nodeName in Nodes]: SceneNode<SceneNodeAdditionalProps>;
   };
-  materials: { [name: string]: Material };
+  materials: { [materialName in Materials]: Material };
 };
 
 const convertVector3ToArr = (v: Vector3): [x: number, y: number, z: number] => [
@@ -70,27 +70,42 @@ function buildGraph<AdditionalProps extends object = {}>(object: Object3D) {
       obj.scale = convertVector3ToArr(obj.scale);
       obj.rotation = convertEulerToArr(obj.rotation);
 
-      if (obj.name && !data.nodes[obj.name]) {
-        data.nodes[obj.name] = obj;
+      if (obj.name && !data.nodes[obj.name as Nodes]) {
+        data.nodes[obj.name as Nodes] = obj;
       }
-      if (obj.material && !data.materials[obj.material.name])
-        data.materials[obj.material.name] = obj.material;
+      if (obj.material && !data.materials[obj.material.name as Materials])
+        data.materials[obj.material.name as Materials] = obj.material;
     });
   }
 
   return data;
 }
 
-export async function loadSpline<GraphNodeAdditionalProps extends object = {}>(
+import { type Materials, type Nodes } from './fetched-types';
+
+export async function loadSpline<SceneNodeAdditionalProps extends object = {}>(
   splineUrl: `${string}spline.design/${string}`,
   onProgress?: ((event: ProgressEvent<EventTarget>) => void) | undefined
-): Promise<ObjectMap<GraphNodeAdditionalProps>> {
+): Promise<ObjectMap<SceneNodeAdditionalProps>> {
+  // guard against loadSpline being used on the server
+  if (typeof window == 'undefined') return { nodes: {}, materials: {} };
+
   const SplineLoader = (await import('@splinetool/loader')).default;
   const loader = new SplineLoader();
   return new Promise((res, rej) => {
     loader.load(
       splineUrl,
       (scene) => {
+        const graph = buildGraph(scene);
+        // @ts-expect-error
+        if (import.meta.hot) {
+          // @ts-expect-error
+          import.meta.hot.send('tstp:scene', {
+            nodes: Object.keys(graph.nodes),
+            materials: Object.keys(graph.materials),
+          });
+        }
+
         res(buildGraph(scene));
       },
       onProgress,
