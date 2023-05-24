@@ -2,7 +2,6 @@
 
 # threlte-spline
 
-
 **threlte-spline** is a simple utility that lets you use your [Spline](https://spline.design/) scene with [Threlte](https://threlte.xyz/), via the Spline react-three-fiber code export.
 
 This library is heavily inspired by [r3f-spline](https://github.com/splinetool/r3f-spline)
@@ -11,7 +10,7 @@ This library is heavily inspired by [r3f-spline](https://github.com/splinetool/r
 ![](https://github.com/hongkiulam/threlte-spline/actions/workflows/publish.yml/badge.svg)
 ![](https://img.shields.io/npm/v/threlte-spline?style=plastic)
 
-While this library is written to be used in Threlte, it __can__ be used in applications that aren't powered by Threlte. That's because this library simply loads, and returns the Spline scene as Three.js objects.
+While this library is written to be used in Threlte, it **can** be used in applications that aren't powered by Threlte. That's because this library simply loads, and returns the Spline scene as Three.js objects.
 
 ## Install
 
@@ -40,19 +39,19 @@ pnpm add threlte-spline @splinetool/loader
   import { Canvas, T, OrbitControls } from '@threlte/core';
   import { loadSpline } from 'threlte-spline';
 
-  let graph;
-  loadSpline('https://prod.spline.design/HwAUoybfBaBCLzwO/scene.spline').then((_graph) => {
-    graph = _graph;
+  let scene;
+  loadSpline('https://prod.spline.design/HwAUoybfBaBCLzwO/scene.spline').then((_scene) => {
+    scene = _scene;
   });
 </script>
 
-{#if graph}
+{#if scene}
   <Canvas>
     <T.PerspectiveCamera
       makeDefault
-      position={graph.nodes['Camera 1'].position}
-      fov={graph.nodes['Camera 1'].fov}
-      zoom={graph.nodes['Camera 1'].zoom}
+      position={scene.nodes['Camera 1'].position}
+      fov={scene.nodes['Camera 1'].fov}
+      zoom={scene.nodes['Camera 1'].zoom}
     >
       <OrbitControls />
     </T.PerspectiveCamera>
@@ -60,8 +59,8 @@ pnpm add threlte-spline @splinetool/loader
     <T.Group>
       <T.Mesh
         name="Rectangle"
-        geometry={graph.nodes.Rectangle.geometry}
-        material={graph.materials['Rectangle Material']}
+        geometry={scene.nodes.Rectangle.geometry}
+        material={scene.materials['Rectangle Material']}
       />
     </T.Group>
   </Canvas>
@@ -82,20 +81,47 @@ In the interim, you can extend the types by doing the following
   type MissingProperties = {
     prop1: number;
   }
-  let graph: ObjectMap<MissingProperties>;
-  loadSpline<MissingProperties>('https://prod.spline.design/HwAUoybfBaBCLzwO/scene.spline').then((_graph) => {
-    graph = _graph;
+  let scene: ObjectMap<MissingProperties>;
+  loadSpline<MissingProperties>('https://prod.spline.design/HwAUoybfBaBCLzwO/scene.spline').then((_scene) => {
+    scene = _scene;
   });
 </script>
 
-{#if graph}
+{#if scene}
   <Canvas>
     ...
   </Canvas>
 {/if}
 ```
 
-This will add the missing props to `GraphNode`
+This will add the missing props to `SceneNode`
+
+### types-plugin
+
+Register this Vite plugin to fetch more accurate types for your Spline scene
+
+e.g.
+
+```javascript
+import { threlteSplineTypesPlugin } from 'threlte-spline/dist/types-plugin';
+
+const viteConfig = {
+  ...,
+  plugins: [..., threlteSplineTypesPlugin()],
+};
+```
+
+**Without plugin**
+```javascript
+scene.nodes
+//      ^= { [x: string]: SceneNode }
+```
+
+**With plugin**
+```javascript
+scene.nodes
+//      ^= { rectangle: SceneNode, camera: SceneNode }
+```
 
 ## Examples
 
