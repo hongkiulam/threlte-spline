@@ -1,3 +1,4 @@
+import type { Materials, Nodes } from './fetched-types';
 import type {
   Vector3,
   Material,
@@ -81,8 +82,6 @@ function buildGraph<AdditionalProps extends object = {}>(object: Object3D) {
   return data;
 }
 
-import { type Materials, type Nodes } from './fetched-types';
-
 export async function loadSpline<SceneNodeAdditionalProps extends object = {}>(
   splineUrl: `${string}spline.design/${string}`,
   onProgress?: ((event: ProgressEvent<EventTarget>) => void) | undefined
@@ -105,8 +104,7 @@ export async function loadSpline<SceneNodeAdditionalProps extends object = {}>(
             materials: Object.keys(graph.materials),
           });
         }
-
-        res(buildGraph(scene));
+        res(graph as ObjectMap<SceneNodeAdditionalProps>);
       },
       onProgress,
       rej
