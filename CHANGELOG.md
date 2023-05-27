@@ -1,5 +1,11 @@
 # threlte-spline
 
+## 0.4.1
+
+### Patch Changes
+
+- a768f95: Fix loadSpline - scene not loading properly
+
 ## 0.4.0
 
 ### Minor Changes
