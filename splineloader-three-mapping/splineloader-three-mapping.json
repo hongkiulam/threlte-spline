@@ -541,6 +541,5 @@
   "1.0.47": "patch:three@npm:0.149.0#./packages/editor/patches/three.patch",
   "1.0.48": "patch:three@npm:0.149.0#./packages/editor/patches/three.patch",
   "1.0.49": "patch:three@npm:0.149.0#./packages/editor/patches/three.patch",
-  "1.0.50": "patch:three@npm:0.149.0#./packages/editor/patches/three.patch",
-  "1.0.51": "patch:three@npm:0.149.0#./packages/editor/patches/three.patch"
+  "1.0.50": "patch:three@npm:0.149.0#./packages/editor/patches/three.patch"
 }

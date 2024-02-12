@@ -1,0 +1,21 @@
+name: Update Version Mapping
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "pnpm"
+      - run: node splineloader-three-mapping/get-splineloader-three-mapping.cjs
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "update version mapping"
