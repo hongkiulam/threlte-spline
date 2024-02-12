@@ -32,6 +32,13 @@ pnpm add threlte-spline @splinetool/loader
 
 `@types/three` is required for Typescript support
 
+Please be aware that this library is simply an extension of `@splinetool/loader`, and is intended to be used with `@threlte/core`. Both of these libraries were built with a specific version of `three` in mind. So please be mindful that your installed version of `three` may need to be very specific in order for these libraries to work harmoniously together.
+
+A common error that you may encounter if your version of `three` is not compatible with your version of `@splinetool/loader` is: `Uncaught TypeError: Cannot read property 'x' of undefined`
+
+Typically, you can use the latest version of `@splinetool/loader` that is available at the time of exporting the Spline scene, you can then find *roughly* the version of `three` required [here](./splineloader-three-mapping/splineloader-three-mapping.json). These are scraped from `@splinetool/loader` package.json files.
+
+
 ## Usage
 
 ```svelte
