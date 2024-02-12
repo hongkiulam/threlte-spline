@@ -1,5 +1,11 @@
 # threlte-spline
 
+## 0.5.0
+
+### Minor Changes
+
+- 898c277: Allow usage of any splinetool loader version
+
 ## 0.4.1
 
 ### Patch Changes
