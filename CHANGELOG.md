@@ -1,5 +1,11 @@
 # threlte-spline
 
+## 0.5.1
+
+### Patch Changes
+
+- 441e7ea: Fix npm script so that it performs build on release
+
 ## 0.5.0
 
 ### Minor Changes
