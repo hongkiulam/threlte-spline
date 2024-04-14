@@ -36,8 +36,7 @@
   "scripts": {
     "build": "tsup src/ --format esm --dts --clean",
     "lint": "tsc",
-    "ci": "pnpm lint && pnpm build",
-    "release": "pnpm install && changeset publish",
+    "release": "pnpm lint && pnpm build && changeset publish",
     "changeset": "changeset"
   },
   "devDependencies": {
